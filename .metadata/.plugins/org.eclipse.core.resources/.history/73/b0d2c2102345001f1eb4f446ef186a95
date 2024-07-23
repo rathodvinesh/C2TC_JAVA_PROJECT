@@ -1,0 +1,5 @@
+package com.ajprogramming.restapi.controller;
+
+public class College {
+
+}

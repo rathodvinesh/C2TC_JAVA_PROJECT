@@ -1,0 +1,5 @@
+package com.programming.restapi.repository;
+
+public class PlacementRepository {
+
+}

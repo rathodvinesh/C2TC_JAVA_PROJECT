@@ -1,0 +1,5 @@
+package com.ajprogramming.restapi.entity;
+
+public class College {
+
+}

@@ -1,0 +1,15 @@
+package com.ajprogramming.restapi;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+
+@SpringBootApplication
+@ComponentScan("com.ajprogramming.restapi")
+public class SpringBootApiProjectApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SpringBootApiProjectApplication.class, args);
+	}
+
+}

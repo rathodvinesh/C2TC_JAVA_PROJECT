@@ -1,0 +1,71 @@
+package com.programming.restapi.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import com.programming.restapi.entity.Placement;
+import com.programming.restapi.repository.PlacementRepository;
+
+@RestController
+public class PlacementController {
+
+    @Autowired
+    PlacementRepository repo;
+
+    // Get all placements
+    @GetMapping("/placements")
+    public List<Placement> getAllPlacements() {
+        List<Placement> placements = repo.findAll();
+        return placements;
+    }
+
+    // Get placement by id
+    @GetMapping("/placement/{id}")
+    public Placement getPlacement(@PathVariable("id") int id) {
+        Placement placement = repo.findById(id)
+        		.orElseThrow(() -> new RuntimeException("Placement not found with id " + id));
+        return placement;
+    }
+
+    // Add a new placement
+    @PostMapping("/placement/add")
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public void createPlacement(@RequestBody Placement placement) {
+        repo.save(placement);
+    }
+
+    // Update an existing placement data
+    @PutMapping("/placement/update/{id}")
+    public Placement updatePlacement(@PathVariable("id") int id, @RequestBody Placement placementDetails) {
+        Placement placement = repo.findById(id)
+        		.orElseThrow(() -> new RuntimeException("Placement not found with id " + id));
+        
+        if (placementDetails.getName() != null) {
+            placement.setName(placementDetails.getName());
+        }
+        if (placementDetails.getDate() != null) {
+            placement.setDate(placementDetails.getDate());
+        }
+        if (placementDetails.getQualification() != null) {
+            placement.setQualification(placementDetails.getQualification());
+        }
+        if (placementDetails.getYear() != 0) {
+            placement.setYear(placementDetails.getYear());
+        }
+//        if (placementDetails.getCollege() != null) {
+//            placement.setCollege(placementDetails.getCollege());
+//        }
+
+        return repo.save(placement);
+    }
+
+    // Delete an existing placement
+    @DeleteMapping("/placement/delete/{id}")
+    public void removePlacement(@PathVariable("id") Long id) {
+        Placement placement = repo.findById(id).orElseThrow(() -> new RuntimeException("Placement not found with id " + id));
+        repo.delete(placement);
+    }
+}

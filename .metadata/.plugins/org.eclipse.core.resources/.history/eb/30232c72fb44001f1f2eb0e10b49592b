@@ -1,0 +1,12 @@
+package com.ajprogramming.restapi.repository;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.ajprogramming.restapi.entity.Student;
+
+public interface StudentRepository extends JpaRepository<Student,Integer> {
+
+
+}

@@ -1,0 +1,5 @@
+package com.programming.restapi.entity;
+
+public class Placement {
+
+}
